@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1690400599447,"sparkVersion":"3.4.1","uid":"StringIndexer_9a26f29a893a","paramMap":{"outputCol":"ExerciseAngina_index","inputCol":"ExerciseAngina"},"defaultParamMap":{"outputCol":"StringIndexer_9a26f29a893a__output","handleInvalid":"error","stringOrderType":"frequencyDesc"}}

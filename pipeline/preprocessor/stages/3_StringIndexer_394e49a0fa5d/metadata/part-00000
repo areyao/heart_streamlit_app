@@ -1,0 +1,1 @@
+{"class":"org.apache.spark.ml.feature.StringIndexerModel","timestamp":1690400597227,"sparkVersion":"3.4.1","uid":"StringIndexer_394e49a0fa5d","paramMap":{"inputCol":"FastingBS","outputCol":"FastingBS_index"},"defaultParamMap":{"handleInvalid":"error","stringOrderType":"frequencyDesc","outputCol":"StringIndexer_394e49a0fa5d__output"}}
