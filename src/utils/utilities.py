@@ -33,9 +33,9 @@ import sys
 from pyspark.sql import SparkSession
 from pyspark import SQLContext
 # os.environ['SPARK_HOME'] = "C:\spark-3.4.1-bin-hadoop3"
-os.environ['SPARK_HOME'] = "C://spark-3.4.1-bin-hadoop3"
+os.environ['SPARK_HOME'] = "C:\spark-3.4.1-bin-hadoop3"
 # os.environ['JAVA_HOME'] = "C:\Program Files\Eclipse Adoptium\jdk-11.0.15.10-hotspot"
-os.environ['JAVA_HOME'] = "C://Program Files/Java/jre1.8.0_311"
+os.environ['JAVA_HOME'] = "C:\Program Files\Java\jdk1.8.0_181"
 os.environ['PYSPARK_PYTHON'] = sys.executable
 os.environ['PYSPARK_DRIVER_PYTHON'] = sys.executable
 # spark = SparkSession.builder.config("spark.sql.execution.arrow.pyspark.enabled", False).config("spark.driver.host","localhost").getOrCreate()
