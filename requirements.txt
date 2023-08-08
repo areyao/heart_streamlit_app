@@ -6,3 +6,4 @@ matplotlib == 3.7.1
 datetime
 shap == 0.41.0
 plotly == 5.15.0
+spark-submit == 1.4.0
