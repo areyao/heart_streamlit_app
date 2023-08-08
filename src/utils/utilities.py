@@ -33,7 +33,6 @@ import sys
 from pyspark.sql import SparkSession
 from pyspark import SQLContext
 # os.environ['SPARK_HOME'] = "C:\spark-3.4.1-bin-hadoop3"
-os.environ["PYSPARK_SUBMIT_ARGS"] = "--master local[*] pyspark-shell"
 os.environ['SPARK_HOME'] = "C://spark-3.4.1-bin-hadoop3"
 # os.environ['JAVA_HOME'] = "C:\Program Files\Eclipse Adoptium\jdk-11.0.15.10-hotspot"
 os.environ['JAVA_HOME'] = "C://Program Files/Java/jre1.8.0_311"
