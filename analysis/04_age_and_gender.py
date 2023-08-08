@@ -10,10 +10,11 @@ which groups are more prone to heart failures.
 """
 
 by_5_year_age = getAgeGroup(heart_data)
-five_year_df = by_5_year_age.filter(f.col('HeartAttack') == 1).groupBy('age_group', 'HeartAttack').agg(f.count('HeartAttack').alias('instances'))
+five_year_df = by_5_year_age.filter(f.col('HeartDisease') == 1).groupBy('age_group', 'HeartDisease').agg(f.count('HeartDisease').alias('instances'))
 five_year_df.show()
 
-five_year_df.toPandas().pivot(index = "HeartAttack", columns="age_group", values="instances").plot(kind='bar', title = "Instances per Age Group")
+five_year_df.toPandas().sort_values(by=["instances"],ascending = False).pivot(index = "HeartDisease", columns="age_group", values="instances").plot(kind='bar', title = "Instances per Age Group")
+plt.show()
 """
 Through this classification, we can see that those with the most instances of Heart Risk are in their 40s, 50s, and 60s.
 We can also see that is only one instance of heart risk in their early 20's and late 70's.
@@ -22,7 +23,7 @@ We can also see that is only one instance of heart risk in their early 20's and 
 """
 Apart from the age, we can also look at which gender is more prominent to heart risk.
 """
-by_gender = heart_data.filter(f.col('HeartAttack') == 1).groupBy('Sex').agg(f.count(f.col('HeartAttack')).alias('instances'))
+by_gender = heart_data.filter(f.col('HeartDisease') == 1).groupBy('Sex').agg(f.count(f.col('HeartDisease')).alias('instances'))
 by_gender.show() # Make Visualizer
 
 """
@@ -30,7 +31,7 @@ We can see males have more instances of being at risk than females.
 We can look at this alongside the age range to understand how the distributions changes by age.
 """
 
-by_gender_age = by_5_year_age.filter(f.col('HeartAttack') == 1).groupBy('Sex', 'age_group').agg(f.count(f.col('HeartAttack')).alias('instances'))
+by_gender_age = by_5_year_age.filter(f.col('HeartDisease') == 1).groupBy('Sex', 'age_group').agg(f.count(f.col('HeartDisease')).alias('instances'))
 by_gender_age.show() # Make Visualizer
 
 """
