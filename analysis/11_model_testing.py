@@ -108,8 +108,6 @@ print(binaryEval)
 # AUC-ROC Score = 0.9584415584415584
 
 
-
-
 # rf-bestModel then lr-normalModel (7-0-3)
 # 0.9095022624434389
 # 0.9008264462809917
