@@ -14,14 +14,14 @@ lr = LogisticRegression(featuresCol='features', labelCol='label',
 rf = RandomForestClassifier(featuresCol='features', labelCol='label',
                             predictionCol='pred_rf', probabilityCol='prob_rf')
 
-bestModel_pipe = build_data_pipeline(False)
-bestModel_train_df = bestModel_pipe.fit(train_df).transform(train_df)
+# bestModel_pipe = build_data_pipeline(False)
+# bestModel_train_df = bestModel_pipe.fit(train_df).transform(train_df)
 
 # Extract Best Model
 # lr_cv = base_model_cv(lr)
 # lr_bestModel = extract_best_model(lr_cv, bestModel_train_df)
-rf_cv = base_model_cv(rf)
-rf_bestModel = extract_best_model(rf_cv, bestModel_train_df)
+# rf_cv = base_model_cv(rf)
+# rf_bestModel = extract_best_model(rf_cv, bestModel_train_df)
 
 models = [rf]
 
@@ -44,7 +44,7 @@ meta_featuresCol = "meta_features"
 # instantiate the classifier
 meta_classifier = LogisticRegression(featuresCol=meta_featuresCol,
                                      labelCol=meta_labelCol,
-                                     predictionCol=meta_predCol)
+                                     predictionCol=meta_predCol, probabilityCol = "prb_lr")
 # meta_classifier = RandomForestClassifier(featuresCol=meta_featuresCol,
 #                              labelCol=meta_labelCol,
 #                              predictionCol=meta_predCol)
@@ -69,8 +69,8 @@ meta_param = tune.ParamGridBuilder() \
 
 # Build the grid search model and obtain the best model
 meta_lr = grid_search_model(meta_classifier, meta_param)
-# meta_model = meta_lr.fit(meta_features_df).bestModel
-meta_model = meta_lr.fit(meta_features_df)
+meta_model = meta_lr.fit(meta_features_df).bestModel
+# meta_model = meta_lr.fit(meta_features_df)
 
 # -------------------------------- Test all models with the test set --------------------------------------
 test_pred = base_pipeline_model.transform(test_df)
@@ -93,13 +93,24 @@ pr_meta = evaluator.evaluate(meta_test_pred, {evaluator.metricName: "areaUnderPR
 binary_eval = evals.BinaryClassificationEvaluator(metricName="areaUnderROC")
 
 # record the confusion matrix metrics on the test set
-accuracy, precision, recall, f1, binaryEval = evaluate_metrics(meta_test_pred, 'meta_prediction', binary_eval)
+accuracy, precision, recall, f1, binaryEval, tp, fp, tn, fn, curveMetrics = evaluate_metrics(meta_test_pred, 'meta_prediction', binary_eval)
 print(accuracy)
 print(precision)
 print(recall)
 print(f1)
 print(binaryEval)
 
+
+# plt.subplots(1, figsize=(10,10))
+# x_val = [x[0] for x in curveMetrics]
+# y_val = [x[1] for x in curveMetrics]
+# plt.title('Receiver Operating Characteristic')
+# plt.plot([0, 1], ls="--")
+# plt.plot([0, 0], [1, 0] , c=".7"), plt.plot([1, 1] , c=".7")
+# plt.ylabel('True Positive Rate')
+# plt.xlabel('False Positive Rate')
+# plt.plot(x_val, y_val)
+# plt.show()
 # rf then lr (actual bestModel) - 7-0-3
 # Accuracy = 0.9264705882352942
 # Precision = 0.9166666666666666

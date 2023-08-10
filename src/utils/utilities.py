@@ -25,6 +25,7 @@ import streamlit as st
 import datetime as dt
 import shap
 import plotly.express as px
+from PIL import Image
 
 # Environment Libraries
 from pyspark.sql import SparkSession

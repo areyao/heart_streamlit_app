@@ -51,7 +51,9 @@ shap_force = shap.force_plot(explainer.expected_value[0], shap_values[0], featur
 shap_force_fig = plt.gcf()
 
 st.pyplot(shap_sum_fig)
-st.pyplot(shap_force_fig)
+roc_image = Image.open('images/ROC.png')
+st.image('images/ROC.png')
+# st.pyplot(shap_force_fig)
 
 
 
