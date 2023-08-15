@@ -1,5 +1,3 @@
-from pyspark.mllib.evaluation import BinaryClassificationMetrics
-
 from src.utils._run_scripts import *
 from src.model._run_scripts import *
 
@@ -26,22 +24,34 @@ class CurveMetrics(BinaryClassificationMetrics):
 
 
 def evaluate_metrics(testResults, predCol, evaluatorType):
+    '''
+    evaluate_metrics : retrieves various metrics for a binary classification problem
+
+    :param testResults (pySpark dataframe) : results after testing
+    :param predCol (string) : name of the prediction column
+    :param evaluatorType (string) : type of evaluator used (ROC)
+
+    :returns accuracy, precision, recall, f1, binaryEval, points (double, double, double, double, double, list) :
+        various binary evaluation metrics
+    '''
+
+    # Retrieves confusion matrix metrics using the label and the predictions
     results = testResults.withColumn('label', f.col('label').cast('double')).select([predCol, 'label'])
     predictionAndLabels = results.rdd
     metrics = MulticlassMetrics(predictionAndLabels)
 
     cm = metrics.confusionMatrix().toArray()
-    tp = cm[0][0]
-    fp = cm[1][0]
-    fn = cm[0][1]
-    tn = cm[1][1]
+
+    # Calculates the accuracy, precision, recall, f1, and the evaluator score
     accuracy = (cm[0][0] + cm[1][1]) / cm.sum()
     precision = (cm[0][0]) / (cm[0][0] + cm[1][0])
     recall = (cm[0][0]) / (cm[0][0] + cm[0][1])
     f1 = 2 * ((precision * recall) / (precision + recall))
     binaryEval = evaluatorType.evaluate(testResults)
 
+    # get curve points for ROC visualization
     preds = testResults.select('label', 'prb_lr').rdd.map(
         lambda row: (float(row['prb_lr'][1]), float(row['label'])))
     points = CurveMetrics(preds).get_curve('roc')
-    return accuracy, precision, recall, f1, binaryEval, tp, fp, tn, fn, points
+
+    return accuracy, precision, recall, f1, binaryEval, points

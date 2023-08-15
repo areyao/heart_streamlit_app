@@ -5,6 +5,13 @@ conf = get_conf()
 heart_data = get_heart_info(conf)
 
 """
+06_diabetes:
+
+    This notebook delves into the fasting blood pressure feature that focuses on the presence of diabetes in an entry to look
+    briefly into it's possible relation with heart disease.
+"""
+
+"""
 To assess this hypothesis, we must look into the fbs, or the Fasting Blood Sugar level.
 According to the CDC, a fasting blood sugar level of 99 mg/dL or lower is normal, 100 to 125 mg/dL indicates you have prediabetes, and 126 mg/dL or higher indicates you have diabetes.
 

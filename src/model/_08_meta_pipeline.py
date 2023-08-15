@@ -8,7 +8,11 @@ meta_label = conf['meta_columns']['meta_label_col']
 
 def build_meta_pipeline(withLabel):
     """
-    Combines all the stages of the meta features processing.
+    build_meta_pipeline : combines all the stages of the meta features processing.
+
+    :param withLabel (boolean) : if labels should be included in the pipeline (fo differentiate model evaluation
+    pipeline, and final predictor pipeline)
+    :returns pipeline (pipeline) : pipeline to fit base model results
     """
     # stages in the pipeline
     stages = []

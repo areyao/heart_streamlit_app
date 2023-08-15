@@ -2,7 +2,8 @@ from src.utils._run_scripts import *
 from src.model._run_scripts import *
 
 """
-04_summary_statistics:
+03_summary_statistics:
+
     This notebook retrieves the summary statistic of the dataset.
 """
 

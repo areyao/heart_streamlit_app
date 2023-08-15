@@ -91,35 +91,12 @@ best_models_preds.append(dt_bestModel_pred)
 
 bm_prediction_summary = []
 for num in range(len(model_titles)):
-    accuracy, precision, recall, f1, binaryEval = evaluate_metrics(best_models_preds[num], 'prediction', binary_evaluator)
+    accuracy, precision, recall, f1, binaryEval, curveMetrics = evaluate_metrics(best_models_preds[num], 'prediction', binary_evaluator)
     bm_prediction_summary.append([model_titles[num], float(round(accuracy*100,2)), float(round(precision*100,2)), float(round(recall*100,2)), float(round(f1*100,2)), float(round(binaryEval*100,2))])
 
 print("-----Best Models Evaluation-----")
 best_model_summary = spark.createDataFrame(bm_prediction_summary, summary_schema)
 best_model_summary.show()
-
-# print(accuracy)
-# Original Base Models
-#
-
-# -----Best Models Evaluation-----
-# +------------------+--------+---------+------+-----+-----+
-# |             Model|Accuracy|Precision|Recall|   F1|  ROC|
-# +------------------+--------+---------+------+-----+-----++------------------+--------+---------+------+-----+-----+
-# # |             Model|Accuracy|Precision|Recall|   F1|  ROC|
-# # +------------------+--------+---------+------+-----+-----+
-# # |LogisticRegression|   84.88|    84.78| 86.67|85.71|90.84|
-# # |      RandomForest|   88.37|    87.23| 91.11|89.13|95.23|
-# # |     GradientBoost|   82.56|    81.25| 86.67|83.87|90.95|
-# # |               SVC|    81.4|    80.85| 84.44|82.61|88.94|
-# # |      DecisionTree|   82.56|    81.25| 86.67|83.87|84.01|
-# # +------------------+--------+---------+------+-----+-----+
-# |LogisticRegression|   86.05|    86.67| 86.67|86.67|90.14|
-# |      RandomForest|   88.37|    85.71| 93.33|89.36|94.58|
-# |     GradientBoost|   84.88|    84.78| 86.67|85.71|93.12|
-# |               SVC|   86.05|    86.67| 86.67|86.67|91.71|
-# |      DecisionTree|   83.72|    81.63| 88.89|85.11|83.14|
-# +------------------+--------+---------+------+-----+-----+
 
 #0.7,0.0,0.3
 # # -----Base Models Evaluation-----

@@ -9,14 +9,12 @@ label = conf['required_columns']['label_column']
 
 def build_data_pipeline(appendModels,models=[]):
     """
-    Combines all the stages of the data processing.
+    build_data_pipeline : Combines all the stages of the data processing.
 
-    Parameters:
-        appendModels (boolean) : if models to be appended [essential to distinguish pipeline for best model fitting]
-        models (list) : list of models to be appended
+    :param appendModels (boolean) : if models to be appended [essential to distinguish pipeline for best model fitting]
+    :param models (list) : list of models to be appended
 
-    Returns:
-        pipeline (pipeline) : pipeline to fit training data
+    :returns pipeline (pipeline) : pipeline to fit training data
     """
     # stages in the pipeline
     stages = []

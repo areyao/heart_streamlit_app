@@ -7,14 +7,13 @@ split_ratio = conf['train_val_test_split']
 
 def split_data(dataframe, custom_split = None):
     """
-    Split the dataset into training, validation set and test set.
-    Use a stratified sampling method.
+    split_data : Split the dataset into training, validation set and test set.
+    Use a stratified sampling method for equal split.
 
-    INPUT:
-        dataframe (PySpark dataframe) - dataframe
-    OUTPUT:
-        train_set, validation_set, test_set (PySpark dataframes) -
-                          percentage split based on the provided values
+    :param dataframe : dataset to split
+    :param custom_split (list ; optional) : modify the train-validation-test split ratio
+
+    :return train_set, validation_set, test_set (PySpark dataframes) - percentage split based on the provided values
     """
 
     # split dataframes between 0s and 1s

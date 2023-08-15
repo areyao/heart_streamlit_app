@@ -6,15 +6,11 @@ meta_label = conf['meta_columns']['meta_label_col']
 
 def grid_search_model(pipeline, paramGrid):
     """
-    Creates a cross validation object and performs grid search
-    over a set of parameters.
+    grid_search_model : Creates a cross validation object and performs grid search over a set of parameters.
 
-    INPUT:
-        param = grid of parameters
-        pipeline = model pipeline
-
-    OUTPUT:
-        cv = cross validation object
+    :param paramGrid : grid of parameters
+    :param pipeline : model pipeline
+    :returns cv : cross validation object
     """
 
     # choose an evaluator

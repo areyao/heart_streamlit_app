@@ -21,7 +21,7 @@ with st.form(key = 'heart_input'):
     # User Age
     today = dt.datetime.today()
     user_birthDate = st.date_input("Birthdate : ", today, min_value= dt.date(today.year - 100, 1, 1), max_value= today)
-    user_age = int(calculateAge(user_birthDate))
+    user_age = int(calculate_age(user_birthDate))
 
     # User sex
     sex_assignments = {'Male': 'M', 'Female': 'F'}
@@ -37,7 +37,6 @@ with st.form(key = 'heart_input'):
     exrindang_assignments = {'Yes': 'Y', 'No': 'N'}
     exrindang_selection = st.selectbox('Does your chest pain when you exercise? : ', exrindang_assignments.keys())
     user_ExrIndAng = exrindang_assignments[exrindang_selection]
-
 
     # Medically Consulted Portion
 
@@ -59,7 +58,7 @@ with st.form(key = 'heart_input'):
 
     #RestingElectro
     ecg_assignments = {'Normal': 'Normal', 'Having ST-T wave abnormality': 'ST', "Showing probable or definite left ventricular hypertrophy by Estes' criteria" : 'LVH'}
-    ecg_selection = st.selectbox('Resting ElectroCardiographic Results: ', ecg_assignments.keys())
+    ecg_selection = st.selectbox('Resting Electrocardiographic Results: ', ecg_assignments.keys())
     user_ecg = ecg_assignments[ecg_selection]
 
     # Slope

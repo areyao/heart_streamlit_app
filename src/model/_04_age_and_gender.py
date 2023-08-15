@@ -1,7 +1,13 @@
 from src.utils._run_scripts import *
 from src.model._run_scripts import *
 
-def getAgeGroup(dataframe):
+def get_age_group(dataframe):
+    """
+        get_age_group : Retrieves the age group of the entry and appends a new column called age_group
+
+        :param dataframe: The dataframe to be assessed
+        :return dataframe: A dataframe with age_group of entries classified and appended as a new column.
+        """
     dataframe = dataframe.withColumn(
         "age_group",
         f.when((f.col("Age") >= 25) & (f.col("Age") <= 29), "late 20s")

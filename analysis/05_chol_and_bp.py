@@ -5,7 +5,14 @@ conf = get_conf()
 heart_data = get_heart_info(conf)
 
 """
-To better understand cholesterol levels, we can classfy them according to the National Heart, Lung, and Blood Institute guidelines.
+05_chol_and_bp:
+
+    This notebook delves into the cholesterol and blood pressure values of the dataset to derive insights from two of
+    the major signs of heart disease.
+"""
+
+"""
+To better understand cholesterol levels, we can classify them according to the National Heart, Lung, and Blood Institute guidelines.
 - A total cholesterol level of less than 200 mg/dL (5.17 mmol/L) is normal.
 
 - A total cholesterol level of 200 to 239 mg/dL (5.17 to 6.18 mmol/L) is borderline high.

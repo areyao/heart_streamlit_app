@@ -3,8 +3,9 @@ from src.model._run_scripts import *
 
 """
 02_identify_outliers:
-    This notebook identifies any outliers and from the numeric columns,
-    and removes any if there are. It prices the remaining amount of entries left within the data
+
+    This notebook identifies any outliers from the numeric columns,
+    and removes any if there are. It counts the remaining amount of entries left within the dataset
     after outlier handling.
 """
 
@@ -18,3 +19,6 @@ outliers_heart_data = handle_outliers(heart_data,filt_cols, threshold)
 
 print("Number of entries BEFORE outlier handling: ", heart_data.count())
 print("Number of entries AFTER outlier handling: ", outliers_heart_data.count())
+
+# Number of entries BEFORE outlier handling:  918
+# Number of entries AFTER outlier handling:  702

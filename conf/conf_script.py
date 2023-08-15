@@ -1,6 +1,6 @@
 # Databricks notebook source
 def get_conf():
-    # Returns a value based on dictionary key
+    # Returns conf : a value based on dictionary key
     conf = {
         "paths": {
             "heart_data_path": "../data/heart.csv",
@@ -30,8 +30,7 @@ def get_conf():
         "iqr_thresh": {"threshold": 1.5},
         "train_val_test_split": [0.8, 0.1, 0.1],
         # "train_val_test_split": [0.8, 0., 0.3],
-        "summary_type": ["mode", "median"],
-        "features_thresh": 6
+        "summary_type": ["mode", "median"]
     }
 
     return conf

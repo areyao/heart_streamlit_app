@@ -15,6 +15,7 @@ from pyspark.mllib.evaluation import MulticlassMetrics
 from pyspark.ml.classification import RandomForestClassifier, LogisticRegression, DecisionTreeClassifier, GBTClassifier, \
     LinearSVC, RandomForestClassificationModel, LogisticRegressionModel
 from pyspark.ml.functions import vector_to_array
+from pyspark.mllib.evaluation import BinaryClassificationMetrics
 
 # Evaluation and Tuning Libraries
 import pyspark.ml.evaluation as evals
@@ -45,26 +46,39 @@ conf = get_conf()
 
 def read_csv(path):
     """
-    Reads the path and takes the csv within to process.
+    read_csv : Reads the path and takes the csv within to process.
 
-    Parameters:
-        path (string) : file path of the .csv file
-
-    Returns:
-        dataframe (spark dataframe) : the csv file as a spark dataframe with an inferred schema
+    :param path (string) : file path of the .csv file
+    :returns dataframe (spark dataframe) : the csv file as a spark dataframe with an inferred schema
     """
     dataframe = spark.read.format("csv").option("header", "true").option("inferSchema", "true").load(path)
     return dataframe
 
-def calculateAge(birthDate):
+def calculate_age(birth_date):
+    """
+    calculateAge : calculates the user age based on the birthdate given
+
+    :param birth_date (date) : date given by the user
+    :returns age (int) : returns age based on the date given and the date today
+    """
     today = dt.datetime.today()
-    age = today.year - birthDate.year - ((today.month, today.day) < (birthDate.month, birthDate.day))
+    age = today.year - birth_date.year - ((today.month, today.day) < (birth_date.month, birth_date.day))
     return age
 
 
 def predict(preprocessor, base_model, meta_preprocessor, meta_model, row):
+    '''
+    predict : will predict a boolean result based on user input
+
+    :param preprocessor (PipelineModel) : preprocessor for feature formatting, vectorization, and normalization
+    :param base_model (RandomForestClassifierModel) : base model
+    :param meta_preprocessor (PipelineModel) : preprocessor for meta-model
+    :param meta_model (LogisticRegressionModel) : meta-model
+    :param row (list) : user input as list
+    '''
+    # retrieve data schema and build the to predict data based on user input
     heart_data = read_csv('data/heart.csv')
-    # heart_data = heart_data = get_heart_info(conf)
+    # heart_data = get_heart_info(conf, streamlitPath = True)
     df_schema = heart_data.drop('HeartDisease').schema
     to_predict = spark.createDataFrame(row, df_schema)
 
